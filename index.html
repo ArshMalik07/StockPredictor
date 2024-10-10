@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Data</title>
+</head>
+<body>
+    <form method="POST">
+        <label for="stock_symbol">Enter Stock Symbol:</label>
+        <input type="text" id="stock_symbol" name="stock_symbol" required><br><br>
+
+        <label for="broker">Stock Exchange:</label>
+        <select id="broker" name="stock_exchange" required>
+            <option value="NSE">NSE</option>
+            <option value="BSE">BSE</option>
+        </select><br><br>
+
+        <button type="submit">Fetch Data</button>
+    </form>
+    
+    {% if stock_data %}
+        <h2>Stock Data for {{ stock_symbol }}</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                    <th>SMA 50</th>
+                    <th>SMA 200</th>
+                    <th>Upper BB</th>
+                    <th>Lower BB</th>
+                    <th>RSI</th>
+                    <th>ATR</th>
+                    <th>Volume MA</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in stock_data %}
+                <tr>
+                    <td>{{ row.Date }}</td>
+                    <td>{{ row.Open }}</td>
+                    <td>{{ row.High }}</td>
+                    <td>{{ row.Low }}</td>
+                    <td>{{ row.Close }}</td>
+                    <td>{{ row.Volume }}</td>
+                    <td>{{ row.SMA_50 }}</td>
+                    <td>{{ row.SMA_200 }}</td>
+                    <td>{{ row.Upper_BB }}</td>
+                    <td>{{ row.Lower_BB }}</td>
+                    <td>{{ row.RSI }}</td>
+                    <td>{{ row.ATR }}</td>
+                    <td>{{ row.Volume_MA }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
